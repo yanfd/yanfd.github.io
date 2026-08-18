@@ -2,23 +2,35 @@
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/
 
+#extra
+aplayer:
+  meting: true
+
 # Site
-title: Hexo
+title: YANFD
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
+author: YANFD
+language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+#url: http://example.com
+url: https://www.yanfd.tech
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
   trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+#feed
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
 
 # Directory
 source_dir: source
@@ -40,7 +52,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -97,11 +109,11 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: 'git'
-  repository: https://github.com/yanfd/yanfd.github.io.git
+  type: git
+  repository: git@github.com:yanfd/yanfd.github.io.git
   branch: main
