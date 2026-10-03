@@ -1,0 +1,831 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#f2f2f4">
+  <meta name="author" content="YANFD">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="GPG 加密解密简明教程大家都知道，互联网上充斥着大量的明文传输方式，可以说绝对是不安全地带。那么，我们如何保证在不安全的互联网中更可靠的传输重要数据呢？个人认为最好的方式之一就是使用 GPG 工具进行加密。此文只是简单介绍了 GPG 的常规用法，重在推广和普及 GPG 加密工具，详细的使用请参见 GPG 手册。 名词解释RSA &#x2F; DSA &#x2F; ElGamal : 是指加密算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GPG Tutorial">
+<meta property="og:url" content="https://www.yanfd.tech/2023/12/05/GPG-Tutorial/index.html">
+<meta property="og:site_name" content="YANFD">
+<meta property="og:description" content="GPG 加密解密简明教程大家都知道，互联网上充斥着大量的明文传输方式，可以说绝对是不安全地带。那么，我们如何保证在不安全的互联网中更可靠的传输重要数据呢？个人认为最好的方式之一就是使用 GPG 工具进行加密。此文只是简单介绍了 GPG 的常规用法，重在推广和普及 GPG 加密工具，详细的使用请参见 GPG 手册。 名词解释RSA &#x2F; DSA &#x2F; ElGamal : 是指加密算法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-05T15:01:41.000Z">
+<meta property="article:modified_time" content="2023-12-05T15:06:41.132Z">
+<meta property="article:author" content="YANFD">
+<meta property="article:tag" content="tech">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>GPG Tutorial - YANFD</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/yanfd-fluid.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.yanfd.tech","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="YANFD" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 24vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>YANFD</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                
+                <span>HOME</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                
+                <span>ARCHIVE</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                
+                <span>TAGS</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                
+                <span>ABOUT</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>HOME</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>ARCHIVE</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>TAGS</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-link-fill"></i>
+                  <span>ABOUT</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner"
+     style="background: url('/') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GPG Tutorial"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-12-05 23:01" pubdate>
+          2023年12月5日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GPG Tutorial</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="GPG-加密解密简明教程"><a href="#GPG-加密解密简明教程" class="headerlink" title="GPG 加密解密简明教程"></a>GPG 加密解密简明教程</h3><p>大家都知道，互联网上充斥着大量的明文传输方式，可以说绝对是不安全地带。那么，我们如何保证在不安全的互联网中更可靠的传输重要数据呢？个人认为最好的方式之一就是使用 GPG 工具进行加密。此文只是简单介绍了 GPG 的常规用法，重在推广和普及 GPG 加密工具，详细的使用请参见 GPG 手册。</p>
+<h4 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h4><p>RSA &#x2F; DSA &#x2F; ElGamal : 是指加密算法</p>
+<p>GPG :（全称 GnuPG ) 是一款非对称加密(PGP)的免费软件，非对称加密方式简单讲就是指用公钥加密文件，用私钥解密文件。如果你想给谁发送加密信息，首先你要得到他的公钥，然后通过该公钥加密后传给他，对方利用自已的私钥就可解密并读取文件了。</p>
+<pre><code class="hljs"># 配置文件介绍
+GPG 配置文件目录:~/.gnupg
+~/.gnupg/gpg.conf – 配置文件
+~/.gnupg/trustdb.gpg – 信任库
+~/.gnupg/pubring.gpg – 公钥库
+~/.gnupg/secring.gpg – 私钥库
+</code></pre>
+<h4 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h4><ul>
+<li><p>生成密钥对</p>
+<p>gpg –gen-key</p>
+</li>
+</ul>
+<p>生成过程中会让你选择加密方式，一般选 (1) RSA and RSA (default) 就可以了，然后还需要选择加密位数、过期日期及输入姓名，邮件地址，备注，Passphrase(访问密码）等信息。最后你就可以干点别的事，比如上上网，玩玩游戏什么的，以便让机器生成一些随机数，回头你就可以看到密钥对已经生成完毕。</p>
+<ul>
+<li><p>传播公钥：<br>导出公钥:生成后你可以把公钥中公钥库中导出来，以便传播给你的朋友。</p>
+<p>  gpg –export –armor mykeyID &gt; gpgkey.pub.asc # mykeyID 部分可以用 name 或 mail 地址代替</p>
+</li>
+</ul>
+<p>注： - -armor 表示加内容转换成可见的 ASCII 码输出,否则是二进制不可见内容。<br>现在你可以把导出的公钥通过 Email 等途径发送给你的朋友了，或者你也可以不导出公钥直接上传公钥到密钥服务器。</p>
+<pre><code class="hljs">gpg --keyserver keyserverAddress --send mykeyID
+</code></pre>
+<p>注： –keyserver 可以不加，默认为 keys.gnupg.net<br>然后只要把公钥 ID 和服务器地址告诉给朋友就可以了，朋友可以通过搜索你的 公钥 ID ，Email 地址或名字来获取并导入你的公钥，如下：</p>
+<pre><code class="hljs">gpg --keyserver keyserverAddress --search-keys keyid/name/Email
+</code></pre>
+<p>比如搜索我的：</p>
+<pre><code class="hljs">gpg --keyserver keyserver.ubuntu.com --search-keys rikulu
+</code></pre>
+<ul>
+<li>导入朋友的公钥</li>
+</ul>
+<p>当你获得朋友的公钥文件后，你首先需要导入公钥到公钥库</p>
+<pre><code class="hljs">gpg --import gpgkey.pub.asc
+</code></pre>
+<p>或直接从公钥服务器导入</p>
+<p>gpg –keyserver keyserverAddress –recv-keys pubkeyID</p>
+<h4 id="私钥备份与密钥回收"><a href="#私钥备份与密钥回收" class="headerlink" title="私钥备份与密钥回收"></a>私钥备份与密钥回收</h4><ul>
+<li><p>密钥的导出和导入:以便用来备份密钥或导入到其它机器上。<br>导出</p>
+<p>  gpg -oa seckey.asc –export-secret-keys mykeyID</p>
+</li>
+</ul>
+<p>导入</p>
+<p>gpg –import seckey.asc</p>
+<ul>
+<li><p>密钥回收:当您的密钥对生成之后，您应该立即做一个公钥回收证书，如果您忘记了您的私钥的口令或者您的私钥丢失或者被盗窃，您可以发布这个证书来声明以前的公钥不再有效。<br>生成回收证书</p>
+<p>  gpg –output revoke.asc –gen-revoke mykeyID</p>
+</li>
+</ul>
+<p>导入回收证书</p>
+<pre><code class="hljs">gpg --import revoke.asc
+</code></pre>
+<p>发送回收证书到服务器，声明原 GPG Key 作废</p>
+<pre><code class="hljs">gpg --keyserver keyserverAddress --send mykeyID
+</code></pre>
+<h4 id="列出机器中保存的所有密钥"><a href="#列出机器中保存的所有密钥" class="headerlink" title="列出机器中保存的所有密钥"></a>列出机器中保存的所有密钥</h4><p>列出所有公钥</p>
+<pre><code class="hljs">gpg -k
+</code></pre>
+<p>列出所有私钥</p>
+<pre><code class="hljs">gpg -K
+</code></pre>
+<h4 id="常规使用"><a href="#常规使用" class="headerlink" title="常规使用"></a>常规使用</h4><ul>
+<li>非对称文件加密与解密：</li>
+</ul>
+<p>加密：当你导入完好友的公钥后，就可以用朋友的公钥加密文件了，</p>
+<pre><code class="hljs">gpg -e -r username filename (-r 表示指定用户)
+</code></pre>
+<p>解密：上面的操作会生成 filename.gpg 加密文件，之后你可以把此文件发送给好友了，对方就可以用自已的密钥来解密文件了。</p>
+<pre><code class="hljs">gpg -d filename.gpg
+</code></pre>
+<ul>
+<li>对称加密与解密： 有时候没有得到对方的公钥，而且资料不是太重要，此时还可以使用简单的对称加密方式(加密及解密都使用相同的密钥&#x2F;密码)，加密过程中提示输出对称密钥&#x2F;密码，注意:此密码是临时用的密码,不要设置和自己的私钥保护密码一样，以防别人猜测及盗用!</li>
+</ul>
+<p>加密</p>
+<pre><code class="hljs">gpg --symmetric filename
+</code></pre>
+<p>解密</p>
+<pre><code class="hljs">gpg -d filename.gpg
+</code></pre>
+<ul>
+<li>对文件签名</li>
+</ul>
+<p>数字签名</p>
+<pre><code class="hljs">gpg -o doc.sig -s doc
+</code></pre>
+<p>其中doc是原文件，doc.sig包含了原文件和签名，是二进制的。这个命令会要求你输入你的私钥的密码句。</p>
+<pre><code class="hljs">gpg -o doc.sig -ser name doc 既签名又加密
+</code></pre>
+<p>文本签名</p>
+<pre><code class="hljs">gpg -o doc.sig --clearsign doc
+</code></pre>
+<p>这样产生的doc.sig同样包含原文件和签名，其中签名是文本的，而原文件不变。<br>分离式签名</p>
+<p>gpg -o doc.sig -ab doc</p>
+<p>doc.sig仅包括签名，分离式签名的意思是原文件和签名是分开的。<br>b 表示分离式签名detach-sign<br>验证签名</p>
+<p>gpg –verify doc.sig [doc]</p>
+<hr>
+<p>转载自</p>
+<p><u><em>作者: riku</em></u> </p>
+<p>本文采用CC BY-NC-SA 2.5协议 授权</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/tech/" class="print-no-link">#tech</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/12/15/you-cant-catch-me/" title="YOU CANT CATCH ME">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">YOU CANT CATCH ME</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/12/03/WHY/" title="WHY">
+                        <span class="hidden-mobile">WHY</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      <span>YANFD / HEXO</span>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

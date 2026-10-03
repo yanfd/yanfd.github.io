@@ -1,0 +1,98 @@
+#!/bin/sh
+
+set -eu
+
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+ROOT_DIR=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
+HEXO="$ROOT_DIR/node_modules/.bin/hexo"
+POSTS_DIR="$ROOT_DIR/source/_posts"
+TYPORA_APP=${BLOG_TYPORA_APP:-/Applications/Typora.app}
+
+usage() {
+  cat <<'EOF'
+Usage:
+  blog new "文章标题"  创建文章并用 Typora 打开
+  blog edit             用 Typora 打开整个文章目录
+  blog publish          提交文章并推送，触发 GitHub Actions 部署
+EOF
+}
+
+die() {
+  printf 'blog: %s\n' "$1" >&2
+  exit 1
+}
+
+require_project() {
+  [ -x "$HEXO" ] || die "找不到本地 Hexo: $HEXO"
+  [ -d "$POSTS_DIR" ] || die "找不到文章目录: $POSTS_DIR"
+}
+
+open_typora() {
+  target=$1
+  [ -d "$TYPORA_APP" ] || die "找不到 Typora: $TYPORA_APP"
+  open -a Typora "$target"
+}
+
+new_post() {
+  title=${1-}
+  [ -n "$title" ] || die '请提供文章标题，例如: blog new "文章标题"'
+
+  before=$(mktemp)
+  after=$(mktemp)
+  trap 'rm -f "$before" "$after"' EXIT HUP INT TERM
+
+  (CDPATH= cd -- "$ROOT_DIR" && find source/_posts -type f -name '*.md' -print) | sort >"$before"
+  (CDPATH= cd -- "$ROOT_DIR" && "$HEXO" new "$title")
+  (CDPATH= cd -- "$ROOT_DIR" && find source/_posts -type f -name '*.md' -print) | sort >"$after"
+
+  created=$(comm -13 "$before" "$after" | awk 'NR == 1 { print; exit }')
+  [ -n "$created" ] || die "Hexo 已执行，但没有找到新文章"
+  open_typora "$ROOT_DIR/$created"
+}
+
+publish() {
+  [ -t 0 ] && [ -t 1 ] || die 'blog publish 需要在交互式终端中运行'
+
+  printf '当前文章改动:\n'
+  git -C "$ROOT_DIR" status --short -- source/_posts
+  printf '\n只提交 source/_posts，然后 push origin main 触发 CI/CD？[y/N] '
+  IFS= read -r answer </dev/tty || exit 1
+  case $answer in
+    y|Y|yes|YES|Yes) ;;
+    *) printf '已取消\n'; return 0 ;;
+  esac
+
+  git -C "$ROOT_DIR" add -- source/_posts
+  if git -C "$ROOT_DIR" diff --cached --quiet -- source/_posts; then
+    printf '没有需要发布的文章改动\n'
+    return 0
+  fi
+
+  git -C "$ROOT_DIR" commit -m 'post: publish updates' -- source/_posts
+  git -C "$ROOT_DIR" push origin main
+}
+
+require_project
+
+command=${1-help}
+case $command in
+  help|-h|--help)
+    usage
+    ;;
+  new)
+    shift
+    new_post "$@"
+    ;;
+  edit)
+    [ "$#" -eq 1 ] || die 'edit 不需要参数'
+    open_typora "$POSTS_DIR"
+    ;;
+  publish)
+    [ "$#" -eq 1 ] || die 'publish 不需要参数'
+    publish
+    ;;
+  *)
+    usage >&2
+    exit 1
+    ;;
+esac

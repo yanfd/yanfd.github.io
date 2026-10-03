@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YANFD / Hexo Theme Field Notes</title>
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #77736b;
+      --paper: #f4f1ea;
+      --line: #d9d2c5;
+      --accent: #ef4f2f;
+      --blue: #2b5cff;
+      --shadow: 0 22px 60px rgba(38, 31, 20, .12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #e8e3d9;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, a { font: inherit; }
+    a { color: inherit; }
+
+    .shell { width: min(1280px, calc(100% - 36px)); margin: 0 auto; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(23, 23, 23, .18);
+    }
+    .brand { font: 800 18px/1 "Arial Narrow", Impact, sans-serif; letter-spacing: -.04em; }
+    .topbar small { color: var(--muted); font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; text-transform: uppercase; letter-spacing: .12em; }
+
+    .intro { padding: 68px 0 38px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: end; }
+    h1 { max-width: 760px; margin: 0; font: 800 clamp(48px, 8vw, 112px)/.86 "Arial Narrow", Impact, sans-serif; letter-spacing: -.07em; text-transform: uppercase; }
+    .intro-copy { max-width: 360px; color: #4f4b44; font-size: 15px; line-height: 1.65; }
+    .intro-copy strong { color: var(--ink); }
+
+    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 20px 0 14px; }
+    .tabs { display: flex; gap: 7px; flex-wrap: wrap; }
+    .tab {
+      cursor: pointer;
+      border: 1px solid #bdb5a8;
+      background: transparent;
+      padding: 9px 13px;
+      color: #615b51;
+      font: 11px ui-monospace, SFMono-Regular, Menlo, monospace;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+    .tab:hover, .tab.active { color: #fff; background: var(--ink); border-color: var(--ink); }
+    .hint { color: #756f64; font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+    .stage { position: relative; min-height: 680px; overflow: hidden; background: #17191c; box-shadow: var(--shadow); }
+    .theme { display: none; min-height: 680px; }
+    .theme.active { display: block; }
+    .theme-meta { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 15px 18px; color: rgba(255,255,255,.7); background: #202328; font: 11px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .theme-meta b { color: #fff; font-size: 12px; letter-spacing: .08em; }
+    .theme-meta a { color: #e7c46a; text-decoration: none; }
+
+    /* Butterfly: dark, image-led, effect-rich blog home. */
+    .butterfly { background: #16191d; color: #edf0f1; }
+    .butterfly .preview-nav { display: flex; justify-content: space-between; padding: 22px 30px; background: rgba(10,12,14,.74); }
+    .butterfly .preview-nav b { letter-spacing: .08em; }
+    .butterfly .cover { min-height: 265px; padding: 46px 8%; display: grid; align-content: center; background: linear-gradient(120deg, rgba(17, 42, 61, .92), rgba(13, 16, 24, .78)), radial-gradient(circle at 85% 25%, #ef8050, transparent 34%), #243a4b; }
+    .butterfly .cover h2 { margin: 0; max-width: 690px; font: 700 clamp(36px, 6vw, 76px)/.95 Georgia, serif; letter-spacing: -.06em; }
+    .butterfly .cover p { margin: 16px 0 0; color: #c4d0d6; }
+    .butterfly .post-grid { width: min(980px, 84%); margin: -28px auto 0; display: grid; grid-template-columns: 1.6fr .8fr; gap: 18px; position: relative; }
+    .butterfly .post-card, .butterfly .side-card { padding: 26px; background: #20252a; border: 1px solid #30383f; box-shadow: 0 16px 35px rgba(0,0,0,.18); }
+    .butterfly .post-card h3 { margin: 0 0 12px; font: 28px Georgia, serif; }
+    .butterfly .post-card p, .butterfly .side-card p { color: #aab3b7; line-height: 1.6; }
+    .butterfly .tag { color: #75c3ca; font: 10px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .12em; }
+
+    /* NexT: quiet, centered, documentation-like reading surface. */
+    .next { background: #f7f8f9; color: #333; }
+    .next .preview-nav { padding: 26px 7%; text-align: center; border-bottom: 1px solid #e7e9eb; }
+    .next .preview-nav b { display: block; font: 700 25px Georgia, serif; }
+    .next .preview-nav span { color: #92979c; font: 11px ui-monospace, monospace; }
+    .next .next-body { width: min(760px, 82%); margin: 62px auto; }
+    .next .next-body h2 { margin: 0 0 14px; font: 700 clamp(34px, 5vw, 62px)/1.03 Georgia, serif; letter-spacing: -.055em; }
+    .next .date { color: #9ca2a8; font: 11px ui-monospace, monospace; }
+    .next .rule { width: 42px; height: 2px; margin: 28px 0; background: #50575d; }
+    .next .next-body p { color: #687078; font: 16px/1.85 Georgia, serif; }
+    .next .next-body blockquote { margin: 28px 0; padding: 14px 20px; border-left: 2px solid #d5d9dd; color: #858b91; font-style: italic; }
+
+    /* Fluid: spacious editorial magazine with a light/dark image split. */
+    .fluid { background: #f0ece5; color: #252525; }
+    .fluid .preview-nav { display: flex; justify-content: space-between; padding: 23px 5%; border-bottom: 1px solid #d7d0c5; font-size: 13px; }
+    .fluid .fluid-body { display: grid; grid-template-columns: 1.15fr .85fr; min-height: 585px; }
+    .fluid .fluid-copy { padding: 70px 11%; }
+    .fluid .edition { color: #9a5f3b; font: 11px ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; }
+    .fluid .fluid-copy h2 { margin: 20px 0; font: 800 clamp(40px, 6vw, 86px)/.86 "Arial Narrow", Impact, sans-serif; letter-spacing: -.065em; text-transform: uppercase; }
+    .fluid .fluid-copy p { max-width: 370px; color: #686158; line-height: 1.7; }
+    .fluid .fluid-image { min-height: 585px; background: linear-gradient(145deg, transparent 0 25%, rgba(240, 193, 75, .8) 25% 36%, transparent 36%), radial-gradient(circle at 45% 45%, #dcd2b9 0 9%, transparent 10%), linear-gradient(130deg, #35515a, #9c4c35 52%, #e1b261); }
+    .fluid .fluid-footer { margin-top: 45px; border-top: 1px solid #c8bfb2; padding-top: 15px; font: 10px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .1em; }
+
+    /* AnZhiYu: high-contrast personal portal / visual profile. */
+    .anzhiyu { background: #101722; color: #f5f7fb; }
+    .anzhiyu .preview-nav { display: flex; justify-content: space-between; padding: 22px 30px; color: #a9b4c5; }
+    .anzhiyu .anz-hero { padding: 62px 8%; background: radial-gradient(circle at 78% 30%, rgba(91, 159, 255, .38), transparent 27%), linear-gradient(135deg, #182d46, #0d111a 60%); }
+    .anzhiyu .anz-hero h2 { max-width: 770px; margin: 0; font: 700 clamp(40px, 7vw, 92px)/.92 Inter, sans-serif; letter-spacing: -.075em; }
+    .anzhiyu .anz-hero p { color: #a7b4c7; font-size: 16px; }
+    .anzhiyu .anz-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; padding: 24px 8%; }
+    .anzhiyu .anz-tile { min-height: 120px; padding: 18px; border: 1px solid #33455c; background: rgba(255,255,255,.035); }
+    .anzhiyu .anz-tile strong { display: block; margin-bottom: 10px; color: #88c9ff; }
+    .anzhiyu .anz-tile span { color: #9daabd; font: 12px/1.6 ui-monospace, monospace; }
+    .anzhiyu .anz-button { display: inline-block; margin-top: 18px; padding: 11px 14px; color: #07101c; background: #8ad0ff; border-radius: 99px; text-decoration: none; font-size: 12px; font-weight: 700; }
+
+    /* Landscape: the familiar plain Hexo baseline. */
+    .landscape { background: #fff; color: #505050; }
+    .landscape .preview-nav { padding: 28px 8%; background: #222; color: #fff; }
+    .landscape .preview-nav b { font-size: 25px; font-weight: 400; }
+    .landscape .land-body { width: min(760px, 84%); margin: 54px auto; }
+    .landscape .land-body h2 { margin: 0 0 7px; color: #333; font-size: 38px; font-weight: 400; }
+    .landscape .land-body .date { color: #aaa; font-size: 12px; }
+    .landscape .land-body p { font-size: 16px; line-height: 1.8; }
+    .landscape .land-body a { color: #258fb2; }
+
+    /* Stellar: structured personal knowledge base with a restrained blue system. */
+    .stellar { background: #f4f7fb; color: #273449; }
+    .stellar .preview-nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: #fff; border-bottom: 1px solid #dce5f0; }
+    .stellar .preview-nav b { color: #3976d3; letter-spacing: .08em; }
+    .stellar .stellar-body { display: grid; grid-template-columns: 230px 1fr; min-height: 585px; }
+    .stellar .stellar-side { padding: 30px 20px; background: #edf3fb; border-right: 1px solid #dce5f0; color: #60728d; font: 12px/2 ui-monospace, monospace; }
+    .stellar .stellar-side strong { display: block; margin-bottom: 14px; color: #26364d; font: 700 18px Georgia, serif; }
+    .stellar .stellar-main { padding: 54px 8%; }
+    .stellar .stellar-main .crumb { color: #5487cf; font: 11px ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .stellar .stellar-main h2 { max-width: 680px; margin: 18px 0; font: 700 clamp(38px, 6vw, 75px)/.95 Georgia, serif; letter-spacing: -.065em; }
+    .stellar .stellar-main p { max-width: 600px; color: #64738a; line-height: 1.75; }
+    .stellar .stellar-link { display: inline-block; margin-top: 20px; padding: 10px 14px; background: #3976d3; color: #fff; text-decoration: none; font-size: 12px; }
+
+    /* Volantis: modular, friendly magazine homepage with widgets and sections. */
+    .volantis { background: #f8f8f7; color: #2a2f35; }
+    .volantis .preview-nav { display: flex; justify-content: space-between; padding: 20px 5%; background: #fff; border-bottom: 1px solid #e6e6e4; }
+    .volantis .vol-hero { padding: 62px 8%; background: linear-gradient(110deg, #d8e8e2, #faf6eb 60%, #e6d7e4); }
+    .volantis .vol-hero span { color: #6b7b78; font: 11px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .12em; }
+    .volantis .vol-hero h2 { max-width: 700px; margin: 18px 0 10px; font: 700 clamp(42px, 7vw, 92px)/.88 Georgia, serif; letter-spacing: -.07em; }
+    .volantis .vol-hero p { color: #68726e; }
+    .volantis .vol-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 84%; margin: -24px auto 0; position: relative; }
+    .volantis .vol-box { min-height: 145px; padding: 20px; background: #fff; border: 1px solid #e6e6e4; box-shadow: 0 12px 30px rgba(40, 47, 42, .07); }
+    .volantis .vol-box b { display: block; margin-bottom: 12px; color: #688b7a; font-size: 12px; }
+    .volantis .vol-box p { margin: 0; color: #707873; font-size: 13px; line-height: 1.6; }
+
+    /* Keep: simple centered writing surface with a single accent. */
+    .keep { background: #fbfbfb; color: #333; }
+    .keep .preview-nav { padding: 24px 7%; border-bottom: 1px solid #eee; }
+    .keep .preview-nav b { color: #4d77ff; font-size: 20px; }
+    .keep .keep-body { width: min(760px, 82%); margin: 60px auto; }
+    .keep .keep-body .label { color: #4d77ff; font: 11px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .12em; }
+    .keep .keep-body h2 { margin: 16px 0; font: 700 clamp(38px, 6vw, 70px)/1 Georgia, serif; letter-spacing: -.065em; }
+    .keep .keep-body p { color: #777; font: 16px/1.9 Georgia, serif; }
+    .keep .keep-body .keep-line { width: 100%; height: 1px; margin: 28px 0; background: #e8e8e8; }
+
+    /* Shoka: dark, ornamental, image-forward reading experience. */
+    .shoka { background: #15131d; color: #f5eef4; }
+    .shoka .preview-nav { display: flex; justify-content: space-between; padding: 21px 5%; color: #d8afd0; border-bottom: 1px solid #3c2b43; }
+    .shoka .shoka-body { min-height: 585px; padding: 72px 9%; background: radial-gradient(circle at 75% 25%, #593b62, transparent 26%), linear-gradient(135deg, #21152b, #12131c 58%); }
+    .shoka .shoka-body .ornament { color: #e8b94f; font-size: 28px; }
+    .shoka .shoka-body h2 { max-width: 820px; margin: 20px 0; font: 700 clamp(44px, 8vw, 100px)/.85 Georgia, serif; letter-spacing: -.08em; }
+    .shoka .shoka-body p { max-width: 470px; color: #c9bdc8; line-height: 1.7; }
+    .shoka .shoka-tags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 28px; }
+    .shoka .shoka-tags span { padding: 7px 10px; border: 1px solid #765477; color: #e2b9dc; font: 10px ui-monospace, monospace; }
+
+    /* Yun: light, playful personal site with cloud-like blue accents. */
+    .yun { background: #f2f8ff; color: #34435a; }
+    .yun .preview-nav { display: flex; justify-content: space-between; padding: 20px 5%; background: #fff; border-bottom: 1px solid #dbeaf7; }
+    .yun .preview-nav b { color: #58a7db; }
+    .yun .yun-body { min-height: 585px; padding: 70px 8%; background: radial-gradient(circle at 80% 20%, #c5eaff 0 12%, transparent 13%), radial-gradient(circle at 76% 22%, #e5f7ff 0 24%, transparent 25%), linear-gradient(160deg, #eaf8ff, #fdfcff 60%); }
+    .yun .yun-body .cloud { color: #58a7db; font-size: 36px; }
+    .yun .yun-body h2 { max-width: 700px; margin: 18px 0; font: 700 clamp(43px, 7vw, 90px)/.88 Georgia, serif; letter-spacing: -.075em; }
+    .yun .yun-body p { max-width: 470px; color: #71839a; line-height: 1.75; }
+    .yun .yun-list { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+    .yun .yun-list span { padding: 9px 13px; border-radius: 99px; background: #fff; color: #5898c5; box-shadow: 0 7px 20px rgba(95, 160, 205, .12); font-size: 12px; }
+    .landscape .land-side { float: right; width: 180px; margin: 12px 0 20px 35px; padding: 18px; background: #f2f2f2; font-size: 12px; line-height: 1.7; }
+
+    .notes { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; margin: 26px 0 70px; }
+    .note { padding: 23px; background: rgba(255,255,255,.5); border: 1px solid var(--line); }
+    .note h3 { margin: 0 0 12px; font-size: 15px; }
+    .note p, .note li { color: #625d54; font-size: 13px; line-height: 1.7; }
+    .note ul { margin: 0; padding-left: 18px; }
+    .current { color: #be3d25; font-weight: 700; }
+    footer { padding: 24px 0 40px; color: #777168; font: 11px ui-monospace, monospace; }
+
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 24px, 1280px); }
+      .intro { display: block; padding-top: 45px; }
+      .intro-copy { margin-top: 24px; }
+      .toolbar { display: block; }
+      .hint { display: block; margin-top: 12px; }
+      .stage, .theme { min-height: 720px; }
+      .butterfly .post-grid, .fluid .fluid-body { grid-template-columns: 1fr; }
+      .butterfly .post-grid { width: 88%; }
+      .fluid .fluid-image { min-height: 240px; }
+      .anzhiyu .anz-grid { grid-template-columns: 1fr; }
+      .anzhiyu .anz-tile { min-height: 90px; }
+      .stellar .stellar-body { grid-template-columns: 1fr; }
+      .stellar .stellar-side { display: none; }
+      .volantis .vol-row { grid-template-columns: 1fr; width: 88%; }
+      .notes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">YANFD / HEXO BLOG</div>
+      <small>theme field notes · visual comparison</small>
+    </header>
+
+    <section class="intro">
+      <h1>Pick the<br>world first.</h1>
+      <div class="intro-copy">
+        这是一个离线对比页。所有示例都使用你现有博客里的信息：<strong>YANFD</strong>、技术文章、影像和个人随笔。它不是主题完整截图，而是帮助你判断“气质、阅读节奏和个人主页感”是否对路。
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <nav class="tabs" aria-label="主题预览">
+        <button class="tab active" data-theme="butterfly">Butterfly <span class="current">· current</span></button>
+        <button class="tab" data-theme="next">NexT</button>
+        <button class="tab" data-theme="fluid">Fluid</button>
+        <button class="tab" data-theme="anzhiyu">AnZhiYu</button>
+        <button class="tab" data-theme="landscape">Landscape</button>
+        <button class="tab" data-theme="stellar">Stellar</button>
+        <button class="tab" data-theme="volantis">Volantis</button>
+        <button class="tab" data-theme="keep">Keep</button>
+        <button class="tab" data-theme="shoka">Shoka</button>
+        <button class="tab" data-theme="yun">Yun</button>
+      </nav>
+      <div class="hint">点击标签切换 · 下面的优缺点会同步变化</div>
+    </div>
+
+    <section class="stage" aria-live="polite">
+      <article class="theme butterfly active" data-panel="butterfly">
+        <div class="theme-meta"><b>01 / BUTTERFLY</b><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD</b><span>HOME　ARCHIVE　TAGS　ABOUT</span></div>
+        <div class="cover"><h2>unFamous Digital Alcoholic</h2><p>Frontend Developer · Disco Jockey · Photographer</p></div>
+        <div class="post-grid">
+          <div class="post-card"><span class="tag">latest / 2026</span><h3>现代前端：从界面开始重新理解身体</h3><p>一个内容密度较高、带封面和动态装饰的个人博客入口。文章、音乐、友链和个人展示可以自然地聚在一起。</p><span class="tag">read more　→</span></div>
+          <div class="side-card"><span class="tag">about me</span><p>把博客做成一个有氛围的个人空间，而不是纯文档列表。</p><span class="tag">9 posts　/　3 tags</span></div>
+        </div>
+      </article>
+
+      <article class="theme next" data-panel="next">
+        <div class="theme-meta"><b>02 / NEXT</b><a href="https://github.com/next-theme/hexo-theme-next" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD</b><span>notes on code, images and lost media</span></div>
+        <div class="next-body"><div class="date">2026-08-07　·　TECH</div><h2>现代前端：从界面开始重新理解身体</h2><div class="rule"></div><p>如果你想让文章本身成为主角，NexT 会把界面收得很安静。标题、日期、正文和目录形成稳定的阅读路径，适合持续写长文。</p><blockquote>Less surface, more signal. 页面不抢文章的注意力。</blockquote><p>它更像个人知识库或长期写作档案，而不是一个视觉实验场。</p></div>
+      </article>
+
+      <article class="theme fluid" data-panel="fluid">
+        <div class="theme-meta"><b>03 / FLUID</b><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD</b><span>READ / WATCH / LISTEN</span></div>
+        <div class="fluid-body"><div class="fluid-copy"><span class="edition">personal archive · issue 026</span><h2>Everything<br>makes me<br>feel afraid.</h2><p>Fluid 更接近一份有版式意识的个人杂志：标题大、留白足、封面感强，但不会像展示型主题那样把功能藏起来。</p><div class="fluid-footer">articles　·　photography　·　music　·　about</div></div><div class="fluid-image" aria-label="abstract editorial image"></div></div>
+      </article>
+
+      <article class="theme anzhiyu" data-panel="anzhiyu">
+        <div class="theme-meta"><b>04 / ANZHIYU</b><a href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD.CN</b><span>PERSONAL PORTAL　⌕　☰</span></div>
+        <div class="anz-hero"><h2>Not a blog.<br>A living profile.</h2><p>记录代码、影像、音乐和正在发生的事情。</p><a class="anz-button" href="#">Explore the archive　→</a></div>
+        <div class="anz-grid"><div class="anz-tile"><strong>RECENT NOTE</strong><span>LAIN-CYBERIA.md<br>read / 08 min</span></div><div class="anz-tile"><strong>NOW PLAYING</strong><span>APlayer / ambient loop<br>music as navigation</span></div><div class="anz-tile"><strong>VISUAL INDEX</strong><span>Photography / 24 frames<br>Shanghai, China</span></div></div>
+      </article>
+
+      <article class="theme landscape" data-panel="landscape">
+        <div class="theme-meta"><b>05 / LANDSCAPE</b><a href="https://github.com/hexojs/hexo-theme-landscape" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD</b></div>
+        <div class="land-body"><div class="land-side">ABOUT<br><br>Frontend developer, photographer, and collector of strange media.<br><br>ARCHIVES<br>TAGS<br>RSS</div><div class="date">2026 / 08 / 07</div><h2>现代前端：从界面开始重新理解身体</h2><p>Landscape 是最朴素的 Hexo 基线。它把文章、归档和侧栏讲清楚，几乎没有视觉负担，适合先验证内容结构，再慢慢加自己的样式。</p><p>如果你想要的是“博客就是博客”，它仍然是最直接的参考，但和你现在的 Butterfly 相比，会明显少掉个人作品集和氛围感。</p><a href="#">Continue reading →</a></div>
+      </article>
+
+      <article class="theme stellar" data-panel="stellar">
+        <div class="theme-meta"><b>06 / STELLAR</b><a href="https://github.com/xaoxuu/hexo-theme-stellar" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD</b><span>WIKI　POSTS　NOTES　SEARCH</span></div>
+        <div class="stellar-body"><aside class="stellar-side"><strong>YANFD / INDEX</strong>HOME<br>POSTS<br>WIKI<br>COLLECTIONS<br>ABOUT<br><br>▸ TECH<br>▸ LOST MEDIA<br>▸ LIFE</aside><div class="stellar-main"><span class="crumb">personal knowledge base / tech</span><h2>Build an archive that stays alive.</h2><p>Stellar 更像一个可扩展的个人知识库：普通文章、Wiki、专栏、笔记和搜索都在同一个系统里。适合你以后把博客继续往“个人资料库”方向发展。</p><a class="stellar-link" href="#">Open collection　→</a></div></div>
+      </article>
+
+      <article class="theme volantis" data-panel="volantis">
+        <div class="theme-meta"><b>07 / VOLANTIS</b><a href="https://github.com/volantis-x/hexo-theme-volantis" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD</b><span>HOME　BLOG　MOMENTS　FRIENDS</span></div>
+        <div class="vol-hero"><span>Personal publication / Shanghai</span><h2>Code, images,<br>and the things between.</h2><p>一个可以放文章、瞬间、友链和独立页面的个人空间。</p></div>
+        <div class="vol-row"><div class="vol-box"><b>RECENT POST</b><p>现代前端：从界面开始重新理解身体</p></div><div class="vol-box"><b>NOW</b><p>Listening / writing / wandering through the city</p></div><div class="vol-box"><b>LINKS</b><p>Photography · GitHub · LostMedia</p></div></div>
+      </article>
+
+      <article class="theme keep" data-panel="keep">
+        <div class="theme-meta"><b>08 / KEEP</b><a href="https://github.com/XPoet/hexo-theme-keep" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD</b><span>ARCHIVE　TAGS　ABOUT</span></div>
+        <div class="keep-body"><span class="label">a note from yanfd</span><h2>Writing first.<br>Everything else follows.</h2><div class="keep-line"></div><p>Keep 把界面压到很轻，让你更专注于写东西。它是一个适合长文、技术笔记和持续维护的安静选择，不会主动制造太多视觉噪音。</p><p>如果你希望以后自己再加一层视觉，而不是被主题默认风格牵着走，这个方向值得看。</p></div>
+      </article>
+
+      <article class="theme shoka" data-panel="shoka">
+        <div class="theme-meta"><b>09 / SHOKA</b><a href="https://github.com/amehime/hexo-theme-shoka" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD</b><span>ARCHIVE　MUSIC　GALLERY　ABOUT</span></div>
+        <div class="shoka-body"><div class="ornament">✦　✧　✦</div><h2>Everything makes me feel afraid.</h2><p>Shoka 是偏暗色、偏装饰、偏个人表达的主题。它比普通博客更像一个有世界观的数字房间，适合随笔、音乐、影像和带情绪的文章。</p><div class="shoka-tags"><span>ESSAY</span><span>PHOTOGRAPHY</span><span>LOST MEDIA</span></div></div>
+      </article>
+
+      <article class="theme yun" data-panel="yun">
+        <div class="theme-meta"><b>10 / YUN</b><a href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank" rel="noreferrer">theme source ↗</a></div>
+        <div class="preview-nav"><b>YANFD</b><span>HOME　BLOG　LINKS　ABOUT</span></div>
+        <div class="yun-body"><div class="cloud">☁</div><h2>A small cloud<br>over the archive.</h2><p>Yun 轻、快、带一点可爱和个人站气质，适合不想做得太严肃的博客。它的维护状态需要留意，官方正在把精力转向 Valaxy。</p><div class="yun-list"><span>文章</span><span>照片</span><span>音乐</span><span>朋友们</span></div></div>
+      </article>
+    </section>
+
+    <section class="notes">
+      <div class="note" id="note-text"><h3>Butterfly / 当前主题</h3><p>功能完整、视觉效果多、社区资料丰富。适合把文章、友链、音乐和个人展示揉在一起。代价是默认组件比较多，需要继续收敛，才能避免“主题味”盖过你的内容。</p></div>
+      <div class="note"><h3>快速判断</h3><ul><li><strong>想写长文：</strong> NexT</li><li><strong>想像个人杂志：</strong> Fluid</li><li><strong>想像个人门户：</strong> AnZhiYu</li><li><strong>想要稳定基线：</strong> Landscape</li><li><strong>想保留现有能力：</strong> Butterfly</li></ul></div>
+    </section>
+
+    <footer>LOCAL SHOWCASE · source project: /Users/yanfengwu/Downloads/HexoBlog · no blog configuration changed</footer>
+  </main>
+  <script>
+    const copy = {
+      butterfly: ['Butterfly / 当前主题', '功能完整、视觉效果多、社区资料丰富。适合把文章、友链、音乐和个人展示揉在一起。代价是默认组件比较多，需要继续收敛，才能避免“主题味”盖过你的内容。'],
+      next: ['NexT / 安静的写作档案', '布局克制、阅读路径最清晰，长文章体验好。它会让你的博客更像一个长期写作和知识整理空间，但摄影、视频和个人主页的存在感会弱一些。'],
+      fluid: ['Fluid / 个人杂志', '现代、留白、封面感强，适合你的摄影、随笔和技术文章混合存在。它比 Butterfly 少一点“功能堆叠”，但仍然有足够的博客导航和阅读能力。'],
+      anzhiyu: ['AnZhiYu / 个人门户', '最适合做“我是谁 + 我最近在做什么”的入口，首页表现力和模块化能力很强。视觉存在感最高，也意味着需要花更多时间调色、换图和控制信息密度。'],
+        landscape: ['Landscape / Hexo 基线', '最轻量、最传统、最容易理解。适合做内容结构的对照组，不太能承载你现在已经形成的音乐、影像和个人品牌气质。']
+      ,stellar: ['Stellar / 个人知识库', '适合把博客扩展成文章、Wiki、专栏、笔记和资料索引。对你这种技术、影像、音乐混合内容很有潜力，但首页会更偏信息组织而不是纯视觉表达。'],
+      volantis: ['Volantis / 模块化个人站', '首页模块丰富，适合放文章、瞬间、友链、个人资料和各种小组件。它比 Butterfly 更像“个人站”，但配置项多，迁移时需要仔细收敛。'],
+      keep: ['Keep / 极简写作', '轻量、清楚、对文章友好。适合不想被主题视觉绑架的长期写作，但摄影、视频、播放器等个人内容要靠自己补页面。'],
+      shoka: ['Shoka / 暗色个人空间', '视觉个性非常强，暗色、装饰和动画都更突出，适合你的随笔、音乐和影像气质。代价是配置和依赖更多，升级兼容性需要额外关注。'],
+      yun: ['Yun / 轻快个人站', '轻量、友好、有一点可爱感，适合个人主页和轻博客。官方已说明进入维护模式，长期选择不如 Stellar、Fluid 或 Volantis 稳妥。']
+    };
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.theme');
+    const note = document.querySelector('#note-text');
+    tabs.forEach((tab) => tab.addEventListener('click', () => {
+      const name = tab.dataset.theme;
+      tabs.forEach((item) => item.classList.toggle('active', item === tab));
+      panels.forEach((panel) => panel.classList.toggle('active', panel.dataset.panel === name));
+      note.innerHTML = `<h3>${copy[name][0]}</h3><p>${copy[name][1]}</p>`;
+    }));
+  </script>
+</body>
+</html>
