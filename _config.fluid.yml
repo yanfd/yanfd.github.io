@@ -44,6 +44,9 @@ font:
 custom_css:
   - /css/yanfd-fluid.css
 
+custom_js:
+  - /js/yanfd-entry.js
+
 navbar:
   blog_title: "YANFD"
   ground_glass:
