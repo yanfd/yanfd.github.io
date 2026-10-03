@@ -3,7 +3,6 @@ title: Rum
 date: 2025-03-22 17:53:43
 tags:
 description: 我们的沟通，是巨大的幻觉
-cover: https://p.ipic.vip/9jjw9y.jpg
 ---
 
 [toc]
@@ -22,13 +21,13 @@ cover: https://p.ipic.vip/9jjw9y.jpg
 
 astrbot其实做了微信/telegram/QQ三端的控制，不过我QQ用的比较多，就只挂了这个。
 
-![](https://p.ipic.vip/kgeyhq.png)
+![](/img/posts/kgeyhq.png)
 
 ### 插件
 
 当前已安装插件为
 
-![](https://p.ipic.vip/6a7ku1.png)
+![](/img/posts/6a7ku1.png)
 
 
 
@@ -38,15 +37,15 @@ astrbot其实做了微信/telegram/QQ三端的控制，不过我QQ用的比较�
 
 https://github.com/yanfd/astrbot_plugin_server
 
-![](https://p.ipic.vip/rtdupo.png)
+![](/img/posts/rtdupo.png)
 
-![](https://p.ipic.vip/zn0f48.png)
+![](/img/posts/zn0f48.png)
 
 由于psutil的release()方法识别的是内核版本，导致像win11这种与win10采用同一内核的操作系统被错误的识别为win10。于是在schma做了一套获取用户输入的json，现在用户可以在不满意的时候修改系统名称、饼图、背景颜色
 
-![](https://p.ipic.vip/3z856i.png)
+![](/img/posts/3z856i.png)
 
-![](https://p.ipic.vip/3h0n4a.png)
+![](/img/posts/3h0n4a.png)
 
 ### 部署
 

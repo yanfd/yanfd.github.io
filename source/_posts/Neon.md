@@ -2,7 +2,7 @@
 title: Neon
 date: 2024-12-23 12:43:48
 tags:
-cover: https://p.ipic.vip/16wix4.jpg
+cover: /img/posts/16wix4.jpg
 description: 在被怀疑之前就胆怯的人 不会是一个一流的魔术师
 ---
 
@@ -36,7 +36,7 @@ description: 在被怀疑之前就胆怯的人 不会是一个一流的魔术师
 >
 > 但是，对于一个劳动被极端异化的社会，每个人都像是被电车压在底下的铁轨，紧绷而震颤，这场游戏不会有赢家。
 
-![](https://p.ipic.vip/92650v.jpg)
+![](/img/posts/92650v.jpg)
 
 ——src pixabay
 
@@ -44,7 +44,7 @@ description: 在被怀疑之前就胆怯的人 不会是一个一流的魔术师
 
 成田机场落地，没想到离市内这么远，这个机场的实际位置在千叶市，了解没有太多。从千叶到市内走的是到浅草的JR，从地铁看到外面县城层层叠叠的一户建，地铁的播报，身边形形色色的面孔还有晒到雀黑的中学生，超兴奋！
 
-落地就到了浅草（因为定的酒店离这边还蛮近），下午看到了大街上的人群，五颜六色的招牌，感觉哪里都和大陆不一样，又哪里都相似。skytree非常突兀非常漂亮，美中不足的是旁边卧着一个水滴形状的**便便蛋**（后来才知道是因为高度限制，所以倒下来的啤酒花雕塑，朝日，原谅我一次）。![](https://p.ipic.vip/yr4smu.png)
+落地就到了浅草（因为定的酒店离这边还蛮近），下午看到了大街上的人群，五颜六色的招牌，感觉哪里都和大陆不一样，又哪里都相似。skytree非常突兀非常漂亮，美中不足的是旁边卧着一个水滴形状的**便便蛋**（后来才知道是因为高度限制，所以倒下来的啤酒花雕塑，朝日，原谅我一次）。![](/img/posts/yr4smu.png)
 
 
 
@@ -66,7 +66,7 @@ description: 在被怀疑之前就胆怯的人 不会是一个一流的魔术师
 
 去了**TOKYO CONFIDENTIAL**，亚洲top50，主题酒单是棒球（但是MLB，没有日本本土棒球的西武狮队，遗憾），一杯古典开头，以不知道加了多少肉桂的辣嗓子特调收尾。能看到东京塔的露台非常美，但美好只持续了十分钟——冬天的露台太冷了。店员的英文很差劲。和旁边的港人聊了很多，从东京和香港的区别，签证，旅行的方式，学校、专业、生活等等，乱七八糟。不知道什么原因这哥们一眼就看出了我是计科的，厉害。
 
-![](https://p.ipic.vip/4npwqj.jpg)
+![](/img/posts/4npwqj.jpg)
 
 ---
 
@@ -74,13 +74,13 @@ description: 在被怀疑之前就胆怯的人 不会是一个一流的魔术师
 
 找了一对陌生的韩国情侣帮忙拍照，感谢思密达。
 
-![](https://p.ipic.vip/hnpznl.jpg)
+![](/img/posts/hnpznl.jpg)
 
 ---
 
 **巨型的城市，呼吸的城市！**川流不息的车辆穿梭在斑斓内透的黑色大楼里，望不到边的天际线，同色系的、此起彼伏的玻璃大山延绵到看得见的地方，看不见的地方。大块大块的LED挂在空中、投在一片片的人群身上。听着初中在电视前边放边唱的glassy sky，幻想自己披着黑色的斗篷蹲在楼顶上帅帅的摆pose
 
-![](https://p.ipic.vip/6sjrsa.jpg)
+![](/img/posts/6sjrsa.jpg)
 
 ### 很多新鲜食材
 
@@ -108,7 +108,7 @@ https://youtube.com/watch?v=j5bVWzTyJ7E&si=xtsniywjX8VjuqP0
 
 
 
-![](https://p.ipic.vip/m62z43.jpg)
+![](/img/posts/m62z43.jpg)
 
 老实说我之前一直对东京的小户型装修很向往，包括自己之前的实习也有在做建筑行业这一块，真住进去之后压抑程度实在是夸张，佩服。
 
@@ -128,15 +128,15 @@ https://youtube.com/watch?v=j5bVWzTyJ7E&si=xtsniywjX8VjuqP0
 
 当我在某些事里沉迷的时候，或许沉迷的是我与它之间的空间，我喜欢的是那个在颅内创造出的、散发着无限可能性的版本
 
-![](https://p.ipic.vip/rw6jqb.jpg)
+![](/img/posts/rw6jqb.jpg)
 
-![](https://p.ipic.vip/ma4get.jpg)
+![](/img/posts/ma4get.jpg)
 
 
 
 在**秋叶原**看了很多电子设备、手办、游戏、书籍、其他周边，超巨幅的EVA壁画，街头排着队七扭八扭只为了吃碗面的本地人，只有沉浸在这些东西里之后才会感受到厌倦。一条条街上的扭蛋和娃娃机，塞满了五花八门的娃娃和奖品，坐在柏青哥赌博机前没完没了投进小钢珠的大叔大妈，吵闹，繁杂，喘不过气。**我不喜欢这种感觉。** 但总的来说，对于动漫迷们，一定是个挖不完的宝藏区域，加油啦。
 
-![](https://p.ipic.vip/hp99za.jpg)
+![](/img/posts/hp99za.jpg)
 
 
 
@@ -146,7 +146,7 @@ https://youtube.com/watch?v=j5bVWzTyJ7E&si=xtsniywjX8VjuqP0
 
 ### Modal Soul
 
-![](https://p.ipic.vip/4vzt1k.jpg)
+![](/img/posts/4vzt1k.jpg)
 
 <div class="aplayer" data-id="22821121" data-server="netease" data-type="song"></div>
 
@@ -156,7 +156,7 @@ https://youtube.com/watch?v=j5bVWzTyJ7E&si=xtsniywjX8VjuqP0
 
 坐了大半天的电车到了府中市的多磨陵园，傍晚终于到达火葬场后，和值班大爷艰难沟通一阵子，知道了墓园和火葬场是两个不同位置，他帮忙对着地图画出了墓园的位置和方向，感谢
 
-![](https://p.ipic.vip/ovxvnp.jpg)
+![](/img/posts/ovxvnp.jpg)
 
 
 
@@ -202,7 +202,7 @@ https://youtube.com/watch?v=j5bVWzTyJ7E&si=xtsniywjX8VjuqP0
 >
 > ——Latitude (feat.Five Deez) [Remix]
 
-![](https://p.ipic.vip/4h7w8k.jpg)
+![](/img/posts/4h7w8k.jpg)
 
 
 
@@ -232,13 +232,13 @@ https://youtube.com/watch?v=j5bVWzTyJ7E&si=xtsniywjX8VjuqP0
 
 在这个不熟悉的地方，没有朋友，也没有家人，有很多方方的楼，太阳晒着半张脸，不知道要去哪里，也不知道哪里可去，像平时一样
 
-![](https://p.ipic.vip/bvpzdw.png)
+![](/img/posts/bvpzdw.png)
 
 位置偏东北，为了看到背光的山只能起个大早。那天名钊死了，在旅馆外抱着树吐——吐在店里要罚7000日元。
 
 沿着河口的路，风灌进袖子和领口，雪顶时隐时现，走过一个弯之后才堪堪见到，天色从黑到紫，由紫到青。想看到他被旁边山脉挡住的全貌，不停地跑，不停地拍，不停地跑；山也跟着我，不停地跑，不停地被拍，不停地跑。什么都不做，什么都不想，向着山的方向，趿拉着磨到发白的破亚瑟士，往水里扔石子，穿过马路，穿过麦田，穿过加油站，穿过便利店，穿过一排排居民楼，五百日元钢镚在兜里被攥得温热。
 
-![](https://p.ipic.vip/s7v0tp.jpg)
+![](/img/posts/s7v0tp.jpg)
 
 
 
@@ -281,7 +281,7 @@ Osaka
 
 加纳
 
-![](https://p.ipic.vip/u96u3k.jpg)
+![](/img/posts/u96u3k.jpg)
 
 
 

@@ -3,7 +3,7 @@ title: modern frontend
 date: 2025-04-03 00:58:40
 tags:
 description: 前端的所见即所得
-cover: https://p.ipic.vip/yxflz9.png
+cover: /img/posts/yxflz9.png
 ---
 
 [toc]
@@ -24,9 +24,9 @@ tailwind更是，虽然被人诟病导致代码变长变宽，但所见即所得
 
 https://x.com/rodreick007/status/1907483864806887502?s=46
 
-https://pbs.twimg.com/media/Gni-doEa8AAQ6G_.jpg
+/img/posts/placeholder.svg
 
-![](https://pbs.twimg.com/media/Gni-doEa8AAQ6G_.jpg)
+![](/img/posts/placeholder.svg)
 
 
 
@@ -74,7 +74,7 @@ file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100" >
 ```
 
 5. less js/ts，一些extra。直接在tailwintailwind网站上cmd+k搜索
-![](https://p.ipic.vip/o6ljub.png)
+![](/img/posts/o6ljub.png)
 6. 
 
 ## 其他
@@ -128,9 +128,9 @@ layer例子
 
 ## @utility
 定义一个专门的样式，这样在组件class调用的时候会用的比较方便
-![](https://p.ipic.vip/a3phau.png)
+![](/img/posts/a3phau.png)
 
-![](https://p.ipic.vip/fwc64u.png)
+![](/img/posts/fwc64u.png)
 
 
 
@@ -187,11 +187,11 @@ margin不只有margintop（mt-4)之类，还可以写成my-4，意思是上+下�
 margin控制div的大小，并且会推开其他div
 padding则会向内推，把组件变小
 
-![](https://p.ipic.vip/4xkhf6.png)
+![](/img/posts/4xkhf6.png)
 
 # layout
 
-![](https://p.ipic.vip/yxflz9.png)
+![](/img/posts/yxflz9.png)
 
 
 | 工具类           | 控制的轴   | 作用范围           | 典型使用场景                     |
@@ -226,7 +226,7 @@ padding则会向内推，把组件变小
 把utilities当作断点，而不是情况
 
 也就是说在未指定大小情况下，默认是给移动端用的
-![](https://p.ipic.vip/vij1ay.png)
+![](/img/posts/vij1ay.png)
 sm 代表small以及small以上
 md
 lg

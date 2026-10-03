@@ -2,7 +2,6 @@
 title: Envy
 date: 2024-11-30 20:12:53
 tags:
-cover: https://p.ipic.vip/wbjc9k.JPG
 description: 他人所得非己所失
 ---
 

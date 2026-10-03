@@ -3,7 +3,7 @@ title: bojack
 date: 2025-04-08 10:51:08
 tags:
 description: Beatrice Horseman was born in 1938, and she died in 2018. 
-cover: https://p.ipic.vip/77k4q1.jpg
+cover: /img/posts/77k4q1.jpg
 ---
 
 So I stopped at a Jack in the Box in the way here, and the girl behind the counter said, hiya, are you having an awesome day? 

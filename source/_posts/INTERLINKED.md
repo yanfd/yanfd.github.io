@@ -2,7 +2,6 @@
 title: INTERLINKED
 date: 2024-01-15 03:49:18
 tags: 杂谈
-cover: https://p.ipic.vip/3jvfri.JPG
 description: 水中月，镜中花
 ---
 

@@ -2,7 +2,6 @@
 title: 《解体概要》report
 date: 2024-03-02 16:44:06
 tags:
-cover: https://p.ipic.vip/hr8zb7.jpeg
 description: 难道我们就永远只能是自然的产物，受制于其法则的掌控，长成一棵棵人树吗？
 ---
 

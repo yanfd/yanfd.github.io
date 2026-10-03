@@ -2,7 +2,6 @@
 title: XTASY
 date: 2024-05-27 22:12:42
 tags:
-cover: https://p.ipic.vip/o6njyp.png
 description: My first character.
 ---
 
@@ -22,7 +21,7 @@ description: My first character.
 
 然而，在这个沙漠般空虚的世界里，Xtasy不知道自己究竟在追寻着什么。他不知道自己能否找到答案，又该如何面对。
 
-![](https://p.ipic.vip/o6njyp.png)
+![](/img/posts/placeholder.svg)
 
 
 

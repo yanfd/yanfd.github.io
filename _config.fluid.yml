@@ -61,6 +61,7 @@ index:
   banner_img: ""
   banner_img_height: 72
   banner_mask_alpha: 0
+  default_index_img: /img/posts/placeholder.svg
   slogan:
     enable: true
     text: "YANFD / DIGITAL STUDIO"

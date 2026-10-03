@@ -2,7 +2,6 @@
 title: LAIN&CYBERIA
 date: 2023-11-21 19:56:31
 tags: 杂谈
-cover: https://p.ipic.vip/7l5b5h.jpg
 description: Lain不再是记忆，不再是神，她成为了一根衣角的线头、成为了带上石头帽的野比大雄、成为了所有人的Déjà Vu。
 ---
 
@@ -22,7 +21,7 @@ description: Lain不再是记忆，不再是神，她成为了一根衣角的线
 
 
 
-{% dplayer "url=/resources/lain.mp4" %}
+{% dplayer "url=/videos/lain.mp4" %}
 
 
 
@@ -62,7 +61,7 @@ description: Lain不再是记忆，不再是神，她成为了一根衣角的线
 
 
 
-![](https://p.ipic.vip/cg6i4y.jpg)
+![](/img/posts/placeholder.svg)
 
 
 
@@ -84,7 +83,7 @@ description: Lain不再是记忆，不再是神，她成为了一根衣角的线
 
 **英利的疯狂：**作为1999年开播的lain很明显受到了1988年放映的大友克洋导演《AKIRA》的影响，在最后lain于现实与网络的挣扎中，被alice激怒的英利连接起了屋内的电脑、线缆、各类元器件组成了一个庞大、扭曲、丑陋的怪物面目，致敬了akira结局里[岛铁雄](https://baike.baidu.com/item/岛铁雄/9144394?fromModule=lemma_inlink)因无法控制自身庞大力量导致的崩坏。最终因lain对现实生活的坚定将英利彻底毁灭。可能这种无法控制的力量的恐惧也是lain最后拒绝统治世界，将现实与wired斩断的原因之一吧。
 
-![](https://p.ipic.vip/rszi80.jpg)
+![](/img/posts/placeholder.svg)
 
 
 

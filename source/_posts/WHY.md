@@ -2,7 +2,6 @@
 title: WHY
 date: 2023-12-03 15:41:14
 tags: 杂谈
-cover: https://p.ipic.vip/riryvd.JPG
 description: 小脑袋瓜里冒出来的奇怪问题以及不太可靠的答案
 ---
 

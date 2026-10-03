@@ -3,10 +3,9 @@ title: nightwalk
 date: 2024-10-14 23:55:41
 tags:
 description: 美国画家爱德华·霍普的代表作
-cover: https://p.ipic.vip/9jjw9y.jpg
 ---
 
-![](https://p.ipic.vip/9jjw9y.jpg)
+![](/img/posts/placeholder.svg)
 
 **夜游者**（Nighthwalks）是美国画家[爱德华·霍普](https://zh.wikipedia.org/wiki/愛德華·霍普)的代表作，描绘人们坐在城里的餐厅吃晚餐。它除了是画家的代表作以外，也是一件最为人所熟知的美国艺术品之一。[[1\]](https://zh.wikipedia.org/wiki/夜遊者#cite_note-1)它现在被收藏于[芝加哥艺术学院](https://zh.wikipedia.org/wiki/芝加哥藝術學院)。
 

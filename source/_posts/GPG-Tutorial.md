@@ -2,7 +2,6 @@
 title: GPG Tutorial
 date: 2023-12-05 23:01:41
 tags: tech
-cover: https://p.ipic.vip/mn2fgp.webp
 ---
 
 ### GPG 加密解密简明教程

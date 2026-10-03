@@ -2,7 +2,6 @@
 title: YOU CANT CATCH ME
 date: 2023-12-15 17:19:55
 tags: 
-cover: https://p.ipic.vip/6y7lug.jpg
 ---
 
 -----BEGIN PGP MESSAGE-----

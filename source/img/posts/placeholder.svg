@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Image unavailable">
+  <rect width="1600" height="1000" fill="#e8e8ec"/>
+  <g stroke="#c9c9d0" stroke-width="2" fill="none">
+    <path d="M800 420 L800 580 M720 500 L880 500"/>
+    <rect x="600" y="380" width="400" height="240"/>
+  </g>
+  <text x="800" y="700" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" letter-spacing="16" fill="#a2a2ab">YANFD</text>
+  <text x="800" y="752" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" letter-spacing="8" fill="#bcbcc4">IMAGE UNAVAILABLE</text>
+</svg>

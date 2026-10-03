@@ -2,7 +2,6 @@
 title: Cards
 date: 2024-01-23 09:49:40
 tags:
-cover: https://p.ipic.vip/40jpqg.jpeg
 description: 目前只在玩blackjack
 ---
 

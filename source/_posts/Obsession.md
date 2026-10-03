@@ -3,7 +3,6 @@ title: Obsession
 date: 2024-05-19 22:57:43
 tags:
 description: For one guy im obsessed with.
-cover: https://p.ipic.vip/6fkqxb.jpg
 ---
 
 I think *obsession* is only able to happen 

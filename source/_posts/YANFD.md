@@ -2,7 +2,6 @@
 title: 盐盐的诗
 date: 2024-01-21 03:23:51
 tags:
-cover: https://p.ipic.vip/chp4h6.jpeg
 description: 大家的表演都很不错！
 ---
 
