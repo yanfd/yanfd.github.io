@@ -1,4 +1,8 @@
 node_modules/
+# leftover from the root-owned node_modules that could not be deleted without sudo
+.node_modules_rootpolluted/
+# build output, regenerated and uploaded by .github/workflows/pages.yml
+public/
 db.json
 .DS_Store
 *.log
