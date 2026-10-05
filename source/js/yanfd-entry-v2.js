@@ -30,13 +30,13 @@
   var counter = loader.querySelector('.yanfd-entry-counter');
   var video = document.querySelector('video');
   var minimumTime = window.setTimeout(function () {
-    track.style.width = '68%';
+    track.style.transform = 'scaleX(.68)';
     counter.textContent = '01 / 01';
   }, 180);
 
   var finish = function () {
     window.clearTimeout(minimumTime);
-    track.style.width = '100%';
+    track.style.transform = 'scaleX(1)';
     counter.textContent = '01 / 01';
     loader.classList.add('is-ready');
 
