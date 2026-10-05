@@ -45,7 +45,7 @@ custom_css:
   - /css/yanfd-fluid.css
 
 custom_js:
-  - /js/yanfd-entry.js
+  - /js/yanfd-entry-v2.js
 
 navbar:
   blog_title: "YANFD"
