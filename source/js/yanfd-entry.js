@@ -1,7 +1,8 @@
 (function () {
   'use strict';
 
-  if (!document.body || !document.body.classList.contains('page-index')) return;
+  var isHome = window.location.pathname === '/' || window.location.pathname === '/index.html';
+  if (!isHome || !document.getElementById('banner')) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (window.sessionStorage && sessionStorage.getItem('yanfd-entry-seen') === '1') return;
 

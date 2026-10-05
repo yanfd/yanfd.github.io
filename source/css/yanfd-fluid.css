@@ -178,7 +178,9 @@ body,
 #banner,
 .banner {
   min-height: 300px !important;
-  background: var(--yanfd-bg) !important;
+  background:
+    linear-gradient(90deg, rgba(242, 242, 244, .92), rgba(242, 242, 244, .5)),
+    url('/img/yanfd-city-night.png') center / cover !important;
 }
 
 #banner .full-bg-img,
@@ -316,7 +318,9 @@ html[data-user-color-scheme="dark"] body,
 html[data-user-color-scheme="dark"] .navbar,
 html[data-user-color-scheme="dark"] #banner,
 html[data-user-color-scheme="dark"] .banner {
-  background: var(--yanfd-dark) !important;
+  background:
+    linear-gradient(90deg, rgba(30, 30, 30, .9), rgba(30, 30, 30, .48)),
+    url('/img/yanfd-city-night.png') center / cover !important;
   color: #f2f2f4 !important;
 }
 
