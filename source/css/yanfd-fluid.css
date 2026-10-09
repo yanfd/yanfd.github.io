@@ -667,6 +667,7 @@ body #board {
   .header-inner {
     height: auto !important;
     min-height: 0 !important;
+    max-height: none !important;
   }
 
   main {
