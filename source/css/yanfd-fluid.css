@@ -1,11 +1,11 @@
 /* YANFD visual layer: monochrome studio interface over Fluid's blog structure. */
 :root {
-  --yanfd-bg: #f2f2f4;
+  --yanfd-bg: #f7f6f1;
   --yanfd-surface: #ffffff;
-  --yanfd-ink: #2d2f2f;
-  --yanfd-muted: #737d7d;
-  --yanfd-line: #e2e2e7;
-  --yanfd-dark: #1e1e1e;
+  --yanfd-ink: #20201e;
+  --yanfd-muted: #77736a;
+  --yanfd-line: #d9d5cb;
+  --yanfd-dark: #20201e;
 }
 
 html.yanfd-entry-active,
@@ -21,10 +21,8 @@ html.yanfd-entry-active body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  color: #f2f2f4;
-  background:
-    linear-gradient(90deg, rgba(10, 13, 14, .9), rgba(10, 13, 14, .54)),
-    url('/img/yanfd-city-night.png') center / cover;
+  color: var(--yanfd-ink);
+  background: var(--yanfd-bg);
   isolation: isolate;
   transition: opacity .72s cubic-bezier(.76, 0, .24, 1), clip-path .86s cubic-bezier(.76, 0, .24, 1);
 }
@@ -61,7 +59,7 @@ html.yanfd-entry-active body {
   top: 22px;
   display: flex;
   justify-content: space-between;
-  color: rgba(242, 242, 244, .66);
+  color: var(--yanfd-muted);
 }
 
 .yanfd-entry-center {
@@ -103,16 +101,16 @@ html.yanfd-entry-active body {
 
 .yanfd-entry-caption {
   margin: 22px 0 0;
-  color: rgba(242, 242, 244, .66);
+  color: var(--yanfd-muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 10px;
   letter-spacing: .16em;
 }
 
-.yanfd-entry-bottom { bottom: 22px; color: rgba(242, 242, 244, .66); }
+.yanfd-entry-bottom { bottom: 22px; color: var(--yanfd-muted); }
 .yanfd-entry-status { display: flex; justify-content: space-between; margin-bottom: 10px; }
-.yanfd-entry-track { height: 1px; overflow: hidden; background: rgba(242, 242, 244, .25); }
-.yanfd-entry-track span { display: block; width: 100%; height: 100%; background: #f2f2f4; transform: scaleX(.18); transform-origin: left center; transition: transform .8s cubic-bezier(.76, 0, .24, 1); }
+.yanfd-entry-track { height: 1px; overflow: hidden; background: var(--yanfd-line); }
+.yanfd-entry-track span { display: block; width: 100%; height: 100%; background: var(--yanfd-ink); transform: scaleX(.18); transform-origin: left center; transition: transform .8s cubic-bezier(.76, 0, .24, 1); }
 
 @keyframes yanfd-entry-center { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(8px); } }
 @keyframes yanfd-entry-mark { from { opacity: 0; transform: rotate(0) scale(.65); } to { opacity: 1; transform: rotate(45deg) scale(1); } }
@@ -193,9 +191,7 @@ body,
   min-height: 0 !important;
   height: 88vh;
   border-bottom: 1px solid rgba(45, 47, 47, .24);
-  background:
-    linear-gradient(90deg, rgba(242, 242, 244, .96) 0%, rgba(242, 242, 244, .72) 38%, rgba(242, 242, 244, .1) 100%),
-    url('/img/yanfd-city-night.png') center / cover !important;
+  background: var(--yanfd-bg) !important;
 }
 
 #banner .full-bg-img,
@@ -274,6 +270,7 @@ body,
 .index-card:first-of-type { border-top: 0; }
 
 .index-info {
+  position: relative;
   grid-column: 2;
   width: auto !important;
   max-width: none !important;
@@ -438,6 +435,21 @@ html[data-user-color-scheme="dark"] .banner {
     linear-gradient(90deg, rgba(30, 30, 30, .9), rgba(30, 30, 30, .48)),
     url('/img/yanfd-city-night.png') center / cover !important;
   color: #f2f2f4 !important;
+}
+
+/* Final editorial alignment: keep metadata in its own rail instead of over the title. */
+.index-info::before {
+  left: -140px;
+  top: 8px;
+}
+
+.index-card {
+  grid-template-columns: 140px minmax(0, 1fr);
+}
+
+@media (max-width: 767px) {
+  .index-card { display: block; }
+  .index-info::before { position: static; margin-bottom: 12px; }
 }
 
 html[data-user-color-scheme="dark"] .post-card,
