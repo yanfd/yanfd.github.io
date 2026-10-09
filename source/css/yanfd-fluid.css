@@ -1,4 +1,4 @@
-/* YANFD visual layer: monochrome studio interface over Fluid's blog structure. */
+/* YANFD / STATS editorial skin: shared visual language with the white studio homepage. */
 :root {
   --yanfd-bg: #f7f6f1;
   --yanfd-surface: #ffffff;
@@ -189,7 +189,7 @@ body,
 #banner,
 .banner {
   min-height: 0 !important;
-  height: 88vh;
+  height: 78vh;
   border-bottom: 1px solid rgba(45, 47, 47, .24);
   background: var(--yanfd-bg) !important;
 }
@@ -205,7 +205,7 @@ body,
 .banner .banner-text {
   position: absolute;
   left: 50%;
-  bottom: 11vh;
+  bottom: 10vh;
   width: min(1180px, calc(100% - 32px));
   margin: 0;
   transform: translateX(-50%);
@@ -216,9 +216,9 @@ body,
 .banner .h2,
 #subtitle {
   display: block;
-  max-width: 9ch;
+  max-width: 10ch;
   color: var(--yanfd-ink) !important;
-  font-size: clamp(52px, 10vw, 148px) !important;
+  font-size: clamp(52px, 9vw, 132px) !important;
   font-weight: 700 !important;
   letter-spacing: -.095em !important;
   line-height: .78 !important;
@@ -256,14 +256,16 @@ body,
   background: transparent !important;
 }
 
+#board > .container { padding-top: 0 !important; }
+
 .index-card {
   position: relative;
   display: grid;
   grid-template-columns: minmax(120px, 1fr) minmax(0, 3fr);
   align-items: baseline;
-  min-height: 132px;
+  min-height: 148px;
   margin: 0 !important;
-  padding: 28px 0 !important;
+  padding: 34px 0 !important;
   border-top: 1px solid var(--yanfd-line);
 }
 
@@ -294,7 +296,7 @@ body,
 
 .index-header a {
   color: var(--yanfd-ink) !important;
-  font-size: clamp(28px, 4vw, 58px) !important;
+  font-size: clamp(32px, 4.2vw, 64px) !important;
   font-weight: 500 !important;
   letter-spacing: -.065em !important;
   line-height: .9 !important;
@@ -303,14 +305,14 @@ body,
 .index-excerpt {
   display: block;
   max-width: 58ch;
-  margin-top: 18px !important;
+  margin-top: 20px !important;
   color: var(--yanfd-muted) !important;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.4;
 }
 
 .index-btm {
-  margin-top: 20px !important;
+  margin-top: 24px !important;
 }
 
 .index-btm .post-meta {
@@ -415,16 +417,16 @@ pre,
 @media (max-width: 767px) {
   .navbar { min-height: 0; }
   #banner,
-  .banner { height: 78vh; }
+  .banner { height: 70vh; }
   #banner .banner-text,
   .banner .banner-text { bottom: 12vh; }
   #banner .h2,
   .banner .h2,
   #subtitle { font-size: 64px !important; }
   #banner .full-bg-img::after { right: 14px; bottom: 16px; }
-  .index-card { display: block; min-height: 0; padding: 24px 0 !important; }
+  .index-card { display: block; min-height: 0; padding: 30px 0 !important; }
   .index-info::before { position: static; display: block; margin-bottom: 16px; }
-  .index-header a { font-size: 36px !important; }
+  .index-header a { font-size: 40px !important; }
 }
 
 html[data-user-color-scheme="dark"] body,
