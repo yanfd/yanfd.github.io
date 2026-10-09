@@ -522,6 +522,12 @@ body {
   background: transparent !important;
 }
 
+#board {
+  box-shadow: 0 24px 45px rgb(32 32 30 / .16) !important;
+  border-radius: 3px !important;
+  background: #fffefa !important;
+}
+
 #board > .container,
 #board > .container > .row,
 #board > .container > .row > .col-12 {
@@ -631,7 +637,7 @@ body {
   .banner {
     height: 72vh;
     background:
-      linear-gradient(180deg, #f7f6f1 0%, #f7f6f1 39%, rgb(247 246 241 / .5) 58%, rgb(247 246 241 / .1) 100%),
+      linear-gradient(180deg, #f7f6f1 0%, #f7f6f1 39%, rgb(247 246 241 / .68) 58%, rgb(247 246 241 / .12) 100%),
       url('/img/yanfd-city-night.png') 50% 100% / auto 62% no-repeat !important;
   }
 
@@ -644,8 +650,10 @@ body {
   .banner .h2,
   #subtitle {
     max-width: 6ch;
-    font-size: clamp(4rem, 18vw, 6.5rem) !important;
+    font-size: clamp(3.8rem, 17vw, 6.1rem) !important;
   }
+
+  #banner .banner-text::after { margin-top: 1.25rem; }
 
   .index-card {
     display: grid;
