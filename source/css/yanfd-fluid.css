@@ -522,7 +522,8 @@ body {
   background: transparent !important;
 }
 
-#board {
+#board.board,
+body #board {
   box-shadow: 0 24px 45px rgb(32 32 30 / .16) !important;
   border-radius: 3px !important;
   background: #fffefa !important;
