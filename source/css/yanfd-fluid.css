@@ -634,9 +634,15 @@ body #board {
 }
 
 @media (max-width: 767px) {
+  #board,
+  body #board {
+    margin-top: 0 !important;
+    border-radius: 0 !important;
+  }
+
   #banner,
   .banner {
-    height: 72vh;
+    height: 76vh;
     background:
       linear-gradient(180deg, #f7f6f1 0%, #f7f6f1 39%, rgb(247 246 241 / .68) 58%, rgb(247 246 241 / .12) 100%),
       url('/img/yanfd-city-night.png') 50% 100% / auto 62% no-repeat !important;
@@ -644,14 +650,15 @@ body #board {
 
   #banner .banner-text,
   .banner .banner-text {
-    bottom: 10vh;
+    bottom: 9vh;
   }
 
   #banner .h2,
   .banner .h2,
   #subtitle {
-    max-width: 6ch;
-    font-size: clamp(3.8rem, 17vw, 6.1rem) !important;
+    max-width: 7ch;
+    font-size: clamp(3.2rem, 15vw, 5.4rem) !important;
+    line-height: .8 !important;
   }
 
   #banner .banner-text::after { margin-top: 1.25rem; }
