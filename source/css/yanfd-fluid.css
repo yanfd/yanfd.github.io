@@ -642,7 +642,7 @@ body #board {
 
   #banner,
   .banner {
-    height: 76vh;
+    height: 76vh !important;
     background:
       linear-gradient(180deg, #f7f6f1 0%, #f7f6f1 39%, rgb(247 246 241 / .68) 58%, rgb(247 246 241 / .12) 100%),
       url('/img/yanfd-city-night.png') 50% 100% / auto 62% no-repeat !important;
@@ -662,6 +662,17 @@ body #board {
   }
 
   #banner .banner-text::after { margin-top: 1.25rem; }
+
+  header,
+  .header-inner {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  main {
+    position: relative;
+    z-index: 4;
+  }
 
   .index-card {
     display: grid;
