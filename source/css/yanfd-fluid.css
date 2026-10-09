@@ -670,6 +670,8 @@ body #board {
     max-height: none !important;
   }
 
+  .header-inner[style] { height: auto !important; }
+
   main {
     position: relative;
     z-index: 4;

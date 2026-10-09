@@ -42,7 +42,7 @@ font:
   code_font_size: 85%
 
 custom_css:
-  - /css/yanfd-fluid.css?v=20261010
+  - /css/yanfd-fluid.css?v=20261010-2
 
 custom_js:
   - /js/yanfd-entry-v2.js?v=20261010
