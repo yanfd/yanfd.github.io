@@ -454,6 +454,234 @@ html[data-user-color-scheme="dark"] .banner {
   .index-info::before { position: static; margin-bottom: 12px; }
 }
 
+/* STATS composition pass: shared split hero, paper canvas, and editorial list rhythm. */
+html,
+body {
+  background: #f7f6f1 !important;
+}
+
+#banner,
+.banner {
+  position: relative;
+  width: 100%;
+  height: min(780px, 82vh);
+  overflow: hidden;
+  border-bottom: 1px solid #d9d5cb;
+  background:
+    linear-gradient(90deg, #f7f6f1 0%, #f7f6f1 39%, rgb(247 246 241 / .86) 51%, rgb(247 246 241 / .08) 76%),
+    url('/img/yanfd-city-night.png') 100% 50% / 62% 100% no-repeat !important;
+}
+
+#banner::before {
+  content: "01 / PERSONAL ARCHIVE";
+  position: absolute;
+  right: max(1rem, calc((100% - 1180px) / 2));
+  bottom: 1.25rem;
+  z-index: 2;
+  color: #77736a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: .14em;
+}
+
+#banner .banner-text,
+.banner .banner-text {
+  left: 50%;
+  bottom: 9vh;
+  width: min(1180px, calc(100% - 32px));
+  transform: translateX(-50%);
+}
+
+#banner .h2,
+.banner .h2,
+#subtitle {
+  max-width: 7ch;
+  color: #20201e !important;
+  font-size: clamp(4.6rem, 9.5vw, 9.2rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -.09em !important;
+  line-height: .76 !important;
+  text-transform: uppercase;
+}
+
+#banner .banner-text::after {
+  content: "FRONTEND  /  LOSTMEDIA  /  SHANGHAI";
+  margin-top: 2.25rem;
+  color: #77736a;
+  font-size: 9px;
+  letter-spacing: .14em;
+}
+
+#board,
+.board {
+  position: relative;
+  z-index: 3;
+  max-width: 1180px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+#board > .container,
+#board > .container > .row,
+#board > .container > .row > .col-12 {
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.index-card {
+  counter-increment: post-entry;
+  grid-template-columns: 150px minmax(0, 1fr) !important;
+  min-height: 190px;
+  padding: 42px 0 44px !important;
+  border-top: 1px solid #d9d5cb;
+}
+
+.index-card:first-of-type {
+  border-top: 0;
+}
+
+.index-card::before {
+  content: counter(post-entry, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 44px;
+  color: #77736a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+}
+
+.index-info {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.index-info::before {
+  content: "ENTRY";
+  left: -92px;
+  top: 2px;
+  color: #77736a;
+  font-size: 8px;
+  letter-spacing: .14em;
+}
+
+.index-header a {
+  display: inline-block;
+  max-width: 14ch;
+  color: #20201e !important;
+  font-size: clamp(2.2rem, 4.6vw, 5rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: -.075em !important;
+  line-height: .86 !important;
+  transition: color .2s ease;
+}
+
+.index-header a:hover {
+  color: #77736a !important;
+}
+
+.index-excerpt {
+  max-width: 48ch;
+  margin-top: 22px !important;
+  color: #77736a !important;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.index-btm {
+  margin-top: 22px !important;
+}
+
+.index-btm .post-meta {
+  color: #77736a !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+#board nav[aria-label="navigation"] {
+  padding: 42px 0 64px;
+  border-top: 1px solid #d9d5cb;
+  text-align: right;
+}
+
+#board .pagination .page-number,
+#board .pagination .extend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  margin-left: .35rem;
+  color: #20201e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+}
+
+#board .pagination .current {
+  background: #20201e;
+  color: #f7f6f1;
+}
+
+@media (max-width: 767px) {
+  #banner,
+  .banner {
+    height: 72vh;
+    background:
+      linear-gradient(180deg, #f7f6f1 0%, #f7f6f1 39%, rgb(247 246 241 / .5) 58%, rgb(247 246 241 / .1) 100%),
+      url('/img/yanfd-city-night.png') 50% 100% / auto 62% no-repeat !important;
+  }
+
+  #banner .banner-text,
+  .banner .banner-text {
+    bottom: 10vh;
+  }
+
+  #banner .h2,
+  .banner .h2,
+  #subtitle {
+    max-width: 6ch;
+    font-size: clamp(4rem, 18vw, 6.5rem) !important;
+  }
+
+  .index-card {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr) !important;
+    min-height: 0;
+    padding: 32px 0 36px !important;
+  }
+
+  .index-card::before {
+    position: static;
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 4px;
+  }
+
+  .index-info {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .index-info::before {
+    position: static;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .index-header a {
+    max-width: 11ch;
+    font-size: 2.8rem !important;
+  }
+
+  #board nav[aria-label="navigation"] {
+    padding: 32px 0 48px;
+  }
+}
+
 html[data-user-color-scheme="dark"] .post-card,
 html[data-user-color-scheme="dark"] .card,
 html[data-user-color-scheme="dark"] .post-content,
