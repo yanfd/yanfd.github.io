@@ -1,11 +1,131 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>/* YANFD visual layer: monochrome studio interface over Fluid's blog structure. */
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>/* YANFD / STATS editorial skin: shared visual language with the white studio homepage. */
 :root {
-  --yanfd-bg: #f2f2f4;
+  --yanfd-bg: #f7f6f1;
   --yanfd-surface: #ffffff;
-  --yanfd-ink: #2d2f2f;
-  --yanfd-muted: #737d7d;
-  --yanfd-line: #e2e2e7;
-  --yanfd-dark: #1e1e1e;
+  --yanfd-ink: #20201e;
+  --yanfd-muted: #77736a;
+  --yanfd-line: #d9d5cb;
+  --yanfd-dark: #20201e;
+}
+
+html.yanfd-entry-active,
+html.yanfd-entry-active body {
+  overflow: hidden !important;
+}
+
+.yanfd-entry-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--yanfd-ink);
+  background: var(--yanfd-bg);
+  isolation: isolate;
+  transition: opacity .72s cubic-bezier(.76, 0, .24, 1), clip-path .86s cubic-bezier(.76, 0, .24, 1);
+}
+
+.yanfd-entry-loader.is-leaving {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+
+.yanfd-entry-grain {
+  position: absolute;
+  inset: -50%;
+  z-index: -1;
+  opacity: .1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+  pointer-events: none;
+  animation: yanfd-entry-grain .2s steps(2) infinite;
+}
+
+.yanfd-entry-topline,
+.yanfd-entry-bottom {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.yanfd-entry-topline {
+  top: 22px;
+  display: flex;
+  justify-content: space-between;
+  color: var(--yanfd-muted);
+}
+
+.yanfd-entry-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transform: translateY(8px);
+  animation: yanfd-entry-center 1s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.yanfd-entry-mark {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 26px;
+  transform: rotate(45deg);
+  animation: yanfd-entry-mark 1.3s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.yanfd-entry-mark-f,
+.yanfd-entry-mark-d {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: url('/img/yanfd-mark.png') center / contain no-repeat;
+}
+
+.yanfd-entry-mark-f { transform: translate(-5px, 5px); }
+.yanfd-entry-mark-d { opacity: .5; transform: translate(5px, -5px); }
+
+.yanfd-entry-wordmark {
+  margin: 0;
+  font-size: clamp(42px, 11vw, 112px);
+  font-weight: 700;
+  letter-spacing: -.09em;
+  line-height: .8;
+}
+
+.yanfd-entry-caption {
+  margin: 22px 0 0;
+  color: var(--yanfd-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: .16em;
+}
+
+.yanfd-entry-bottom { bottom: 22px; color: var(--yanfd-muted); }
+.yanfd-entry-status { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.yanfd-entry-track { height: 1px; overflow: hidden; background: var(--yanfd-line); }
+.yanfd-entry-track span { display: block; width: 100%; height: 100%; background: var(--yanfd-ink); transform: scaleX(.18); transform-origin: left center; transition: transform .8s cubic-bezier(.76, 0, .24, 1); }
+
+@keyframes yanfd-entry-center { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(8px); } }
+@keyframes yanfd-entry-mark { from { opacity: 0; transform: rotate(0) scale(.65); } to { opacity: 1; transform: rotate(45deg) scale(1); } }
+@keyframes yanfd-entry-grain { 0% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(-1%, 2%, 0); } 100% { transform: translate3d(2%, -1%, 0); } }
+
+@media (max-width: 767px) {
+  .yanfd-entry-topline,
+  .yanfd-entry-bottom { left: 14px; right: 14px; }
+  .yanfd-entry-mark { width: 58px; height: 58px; }
+  .yanfd-entry-caption { font-size: 8px; letter-spacing: .1em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yanfd-entry-loader { transition-duration: .01ms; }
+  .yanfd-entry-grain { animation: none; }
 }
 
 html,
@@ -27,9 +147,11 @@ body,
 }
 
 .navbar {
-  min-height: 72px;
-  border-bottom: 1px solid var(--yanfd-line) !important;
-  background: var(--yanfd-bg) !important;
+  min-height: 0;
+  border: 0 !important;
+  background: transparent !important;
+  mix-blend-mode: multiply;
+  transition: mix-blend-mode .2s ease;
 }
 
 .navbar .navbar-brand,
@@ -43,8 +165,19 @@ body,
 }
 
 .navbar .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-size: 16px !important;
   letter-spacing: -.04em;
+}
+
+.navbar .navbar-brand::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background: url('/img/yanfd-mark.png') center / contain no-repeat;
 }
 
 .navbar .nav-item a:hover,
@@ -55,7 +188,9 @@ body,
 
 #banner,
 .banner {
-  min-height: 300px !important;
+  min-height: 0 !important;
+  height: 78vh;
+  border-bottom: 1px solid rgba(45, 47, 47, .24);
   background: var(--yanfd-bg) !important;
 }
 
@@ -68,20 +203,47 @@ body,
 
 #banner .banner-text,
 .banner .banner-text {
+  position: absolute;
+  left: 50%;
+  bottom: 10vh;
   width: min(1180px, calc(100% - 32px));
-  margin: 0 auto;
+  margin: 0;
+  transform: translateX(-50%);
   text-align: left !important;
 }
 
 #banner .h2,
 .banner .h2,
 #subtitle {
+  display: block;
+  max-width: 10ch;
   color: var(--yanfd-ink) !important;
-  font-size: clamp(42px, 9vw, 120px) !important;
+  font-size: clamp(52px, 9vw, 132px) !important;
   font-weight: 700 !important;
-  letter-spacing: -.08em !important;
-  line-height: .86 !important;
+  letter-spacing: -.095em !important;
+  line-height: .78 !important;
   text-transform: uppercase;
+}
+
+#banner .banner-text::after {
+  content: "FRONTEND / LOSTMEDIA / SHANGHAI";
+  display: block;
+  margin-top: 28px;
+  color: rgba(45, 47, 47, .72);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+}
+
+#banner .full-bg-img::after {
+  content: "01 — PERSONAL ARCHIVE";
+  position: absolute;
+  right: max(16px, calc((100% - 1180px) / 2));
+  bottom: 24px;
+  color: rgba(45, 47, 47, .72);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
 }
 
 .container,
@@ -92,6 +254,77 @@ body,
 .board {
   margin-top: 0 !important;
   background: transparent !important;
+}
+
+#board > .container { padding-top: 0 !important; }
+
+.index-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) minmax(0, 3fr);
+  align-items: baseline;
+  min-height: 148px;
+  margin: 0 !important;
+  padding: 34px 0 !important;
+  border-top: 1px solid var(--yanfd-line);
+}
+
+.index-card:first-of-type { border-top: 0; }
+
+.index-info {
+  position: relative;
+  grid-column: 2;
+  width: auto !important;
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+.index-info::before {
+  content: "ENTRY";
+  position: absolute;
+  left: 0;
+  top: 32px;
+  color: var(--yanfd-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: .14em;
+}
+
+.index-header {
+  margin: 0 !important;
+}
+
+.index-header a {
+  color: var(--yanfd-ink) !important;
+  font-size: clamp(32px, 4.2vw, 64px) !important;
+  font-weight: 500 !important;
+  letter-spacing: -.065em !important;
+  line-height: .9 !important;
+}
+
+.index-excerpt {
+  display: block;
+  max-width: 58ch;
+  margin-top: 20px !important;
+  color: var(--yanfd-muted) !important;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.index-btm {
+  margin-top: 24px !important;
+}
+
+.index-btm .post-meta {
+  color: var(--yanfd-muted) !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+#board > .container > .row > .col-12 {
+  width: 100%;
 }
 
 .post-card,
@@ -182,20 +415,301 @@ pre,
 }
 
 @media (max-width: 767px) {
-  .navbar { min-height: 60px; }
+  .navbar { min-height: 0; }
   #banner,
-  .banner { min-height: 230px !important; }
+  .banner { height: 70vh; }
+  #banner .banner-text,
+  .banner .banner-text { bottom: 12vh; }
   #banner .h2,
   .banner .h2,
-  #subtitle { font-size: 54px !important; }
+  #subtitle { font-size: 64px !important; }
+  #banner .full-bg-img::after { right: 14px; bottom: 16px; }
+  .index-card { display: block; min-height: 0; padding: 30px 0 !important; }
+  .index-info::before { position: static; display: block; margin-bottom: 16px; }
+  .index-header a { font-size: 40px !important; }
 }
 
 html[data-user-color-scheme="dark"] body,
 html[data-user-color-scheme="dark"] .navbar,
 html[data-user-color-scheme="dark"] #banner,
 html[data-user-color-scheme="dark"] .banner {
-  background: var(--yanfd-dark) !important;
+  background:
+    linear-gradient(90deg, rgba(30, 30, 30, .9), rgba(30, 30, 30, .48)),
+    url('/img/yanfd-city-night.png') center / cover !important;
   color: #f2f2f4 !important;
+}
+
+/* Final editorial alignment: keep metadata in its own rail instead of over the title. */
+.index-info::before {
+  left: -140px;
+  top: 8px;
+}
+
+.index-card {
+  grid-template-columns: 140px minmax(0, 1fr);
+}
+
+@media (max-width: 767px) {
+  .index-card { display: block; }
+  .index-info::before { position: static; margin-bottom: 12px; }
+}
+
+/* STATS composition pass: shared split hero, paper canvas, and editorial list rhythm. */
+html,
+body {
+  background: #f7f6f1 !important;
+}
+
+#banner,
+.banner {
+  position: relative;
+  width: 100%;
+  height: min(780px, 82vh);
+  overflow: hidden;
+  border-bottom: 1px solid #d9d5cb;
+  background:
+    linear-gradient(90deg, #f7f6f1 0%, #f7f6f1 39%, rgb(247 246 241 / .86) 51%, rgb(247 246 241 / .08) 76%),
+    url('/img/yanfd-city-night.png') 100% 50% / 62% 100% no-repeat !important;
+}
+
+#banner::before {
+  content: "01 / PERSONAL ARCHIVE";
+  position: absolute;
+  right: max(1rem, calc((100% - 1180px) / 2));
+  bottom: 1.25rem;
+  z-index: 2;
+  color: #77736a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: .14em;
+}
+
+#banner .banner-text,
+.banner .banner-text {
+  left: 50%;
+  bottom: 9vh;
+  width: min(1180px, calc(100% - 32px));
+  transform: translateX(-50%);
+}
+
+#banner .h2,
+.banner .h2,
+#subtitle {
+  max-width: 7ch;
+  color: #20201e !important;
+  font-size: clamp(4.6rem, 9.5vw, 9.2rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -.09em !important;
+  line-height: .76 !important;
+  text-transform: uppercase;
+}
+
+#banner .banner-text::after {
+  content: "FRONTEND  /  LOSTMEDIA  /  SHANGHAI";
+  margin-top: 2.25rem;
+  color: #77736a;
+  font-size: 9px;
+  letter-spacing: .14em;
+}
+
+#board,
+.board {
+  position: relative;
+  z-index: 3;
+  max-width: 1180px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+#board.board,
+body #board {
+  box-shadow: 0 24px 45px rgb(32 32 30 / .16) !important;
+  border-radius: 3px !important;
+  background: #fffefa !important;
+}
+
+#board > .container,
+#board > .container > .row,
+#board > .container > .row > .col-12 {
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.index-card {
+  counter-increment: post-entry;
+  grid-template-columns: 150px minmax(0, 1fr) !important;
+  min-height: 190px;
+  padding: 42px 0 44px !important;
+  border-top: 1px solid #d9d5cb;
+}
+
+.index-card:first-of-type {
+  border-top: 0;
+}
+
+.index-card::before {
+  content: counter(post-entry, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 44px;
+  color: #77736a;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+}
+
+.index-info {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.index-info::before {
+  content: "ENTRY";
+  left: -92px;
+  top: 2px;
+  color: #77736a;
+  font-size: 8px;
+  letter-spacing: .14em;
+}
+
+.index-header a {
+  display: inline-block;
+  max-width: 14ch;
+  color: #20201e !important;
+  font-size: clamp(2.2rem, 4.6vw, 5rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: -.075em !important;
+  line-height: .86 !important;
+  transition: color .2s ease;
+}
+
+.index-header a:hover {
+  color: #77736a !important;
+}
+
+.index-excerpt {
+  max-width: 48ch;
+  margin-top: 22px !important;
+  color: #77736a !important;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.index-btm {
+  margin-top: 22px !important;
+}
+
+.index-btm .post-meta {
+  color: #77736a !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+#board nav[aria-label="navigation"] {
+  padding: 42px 0 64px;
+  border-top: 1px solid #d9d5cb;
+  text-align: right;
+}
+
+#board .pagination .page-number,
+#board .pagination .extend {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  margin-left: .35rem;
+  color: #20201e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+}
+
+#board .pagination .current {
+  background: #20201e;
+  color: #f7f6f1;
+}
+
+@media (max-width: 767px) {
+  #board,
+  body #board {
+    margin-top: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  #banner,
+  .banner {
+    height: 76vh !important;
+    background:
+      linear-gradient(180deg, #f7f6f1 0%, #f7f6f1 39%, rgb(247 246 241 / .68) 58%, rgb(247 246 241 / .12) 100%),
+      url('/img/yanfd-city-night.png') 50% 100% / auto 62% no-repeat !important;
+  }
+
+  #banner .banner-text,
+  .banner .banner-text {
+    bottom: 9vh;
+  }
+
+  #banner .h2,
+  .banner .h2,
+  #subtitle {
+    max-width: 7ch;
+    font-size: clamp(3.2rem, 15vw, 5.4rem) !important;
+    line-height: .8 !important;
+  }
+
+  #banner .banner-text::after { margin-top: 1.25rem; }
+
+  header,
+  .header-inner {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .header-inner[style] { height: auto !important; }
+
+  main {
+    position: relative;
+    z-index: 4;
+  }
+
+  .index-card {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr) !important;
+    min-height: 0;
+    padding: 32px 0 36px !important;
+  }
+
+  .index-card::before {
+    position: static;
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 4px;
+  }
+
+  .index-info {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .index-info::before {
+    position: static;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .index-header a {
+    max-width: 11ch;
+    font-size: 2.8rem !important;
+  }
+
+  #board nav[aria-label="navigation"] {
+    padding: 32px 0 48px;
+  }
 }
 
 html[data-user-color-scheme="dark"] .post-card,

@@ -127,7 +127,7 @@ about:
   intro: "Frontend developer / disco jockey / photographer"
   icons:
     - { class: "iconfont icon-github-fill", link: "https://github.com/yanfd", tip: "GitHub" }
-    - { class: "iconfont icon-link-fill", link: "https://stats.yanfd.cn/", tip: "Studio" }
+    - { class: "iconfont icon-link-fill", link: "https://stats.yanfd.tech/", tip: "Studio" }
 
 page:
   banner_img: ""
